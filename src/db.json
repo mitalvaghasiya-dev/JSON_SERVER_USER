@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "600f",
+      "department": "HR",
+      "name": "Mital Patel 11",
+      "mobile": "9265979733",
+      "email": "mitalpatel3016@gmail.com",
+      "gender": "male",
+      "doj": "2025-01-31",
+      "city": "Sialkot",
+      "salary": "3333",
+      "address": "sss",
+      "status": true
+    },
+    {
+      "id": "5562",
+      "department": "HR",
+      "name": "Mital Patelwefwef",
+      "mobile": "9265979721",
+      "email": "mvaghasiya5505@gmail.com",
+      "gender": "female",
+      "doj": "2025-02-01",
+      "city": "Lahore",
+      "salary": "43333",
+      "address": "dss",
+      "status": null
+    },
+    {
+      "id": "9bbb",
+      "department": "HR",
+      "name": "",
+      "mobile": "9265979733",
+      "email": "mitalpatel3016@gmail.com",
+      "gender": "male",
+      "doj": "2025-02-01",
+      "city": "Lahore",
+      "salary": "2000",
+      "address": "aaa",
+      "status": true
+    }
+  ]
+}

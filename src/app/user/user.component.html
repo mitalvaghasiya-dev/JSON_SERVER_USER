@@ -1,0 +1,150 @@
+<div class="container-fluid center-container">
+    <div class="row justify-content-center">
+<div class="col-md-12 text-center mt-5">
+    <div class="row">
+        @if(tabChange ===false){
+        <div class="col-8 text-center">
+            <!-- USER LIST -->
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <h3>{{ editMode ? 'Edit User' : 'Add User' }}</h3>
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-dark" (click)="tabChangeTable()">Add User</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>DOJ</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of userList; track $index) {
+                            <tr>
+                                <td> {{ item.department }} </td>
+                                <td> {{ item.name || '-'}} </td>
+                                <td>{{ item.gender }}</td>
+                                <td>{{ item.mobile }}</td>
+                                <td>{{ item.email }}</td>
+                                <td>{{ item.doj }}</td>
+                                <td>{{ item.status ? 'Active': 'InActive' }}</td>
+                                <td class="text-center">
+                                    <i class="fa fa-edit text-primary" (click)="onEdit(item)"></i> |
+                                    <i class="fa fa-trash text-danger" (click)="onDelete(item.id)"></i>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        }@else {
+        <div class="col-4">
+            <!-- USER FORM -->
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <div class="row">
+                        <div class="col-6 text-white">
+                            <h6 class="p-2"> {{ editMode ? 'Update User ': 'Add User' }} </h6>
+                        </div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-info" (click)="tabChangeTable()">Add User</button>&nbsp;
+                            <button class="btn btn-info" (click)="resetData()">RESET</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="row g-3" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+                        <div class="col-6">
+                            <select class="form-select" name="department" [(ngModel)]="userData.department"
+                                placeholder="department" required>
+                                <option value="">Select Department</option>
+                                @for(item of departmentList; track $index){
+                                <option> {{ item }} </option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" [(ngModel)]="userData.name" name="name" required
+                                placeholder="Name" id="">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" [(ngModel)]="userData.mobile" name="mobile" required
+                                placeholder="Mobile" id="">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" [(ngModel)]="userData.email" name="email" required
+                                placeholder="Email" id="">
+                        </div>
+                        <div class="col-6">
+                            <input type="date" class="form-control" [(ngModel)]="userData.doj" name="doj" required
+                                placeholder="DOJ" id="">
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" [(ngModel)]="userData.gender" value="male"
+                                    name="gender" required placeholder="Gender" id="">
+                                <label class="form-check-label">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" value="female"
+                                    [(ngModel)]="userData.gender" name="gender" required placeholder="Gender" id="gender">
+                                <label class="form-check-label">Female</label>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <select class="form-select" name="City" [(ngModel)]="userData.city" required>
+                                <option value="">Select City</option>
+                                @for (item of cityList; track $index)
+                                {
+                                <option> {{ item }} </option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" [(ngModel)]="userData.salary" name="salary" required
+                                placeholder="Salary" id="">
+                        </div>
+                        <div class="col-12">
+                            <textarea cols="5" class="form-control" rows="3" [(ngModel)]="userData.address"
+                                name="address" required placeholder="Address"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="status"
+                                    [(ngModel)]="userData.status" required id="">
+                                <label class="form-check-label"> Active ?</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100" type="submit"> {{ editMode ? 'Update': 'Save' }}
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
+</div>
+</div>
