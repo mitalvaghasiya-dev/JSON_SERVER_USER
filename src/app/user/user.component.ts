@@ -17,8 +17,8 @@ export class UserComponent implements OnInit {
   userList: any[] = [];
   cityList: string[] = ["Lahore", "Multan", "Karachi", "Sialkot", "Faisalabad"];
   departmentList: string[] = ["IT", "HR", "Accounts", "Sales", "Management"];
-
-
+   searchText = '';
+  
   userData: User = {
     department: "",
     name: "",
@@ -64,6 +64,16 @@ export class UserComponent implements OnInit {
       this.userList = res;
     })
   }
+
+    filteredUserList() {
+    if (!this.searchText) {
+      return this.userList;
+    }
+    return this.userList.filter(user =>
+      user.name.toLowerCase().includes(this.searchText.toLowerCase())
+    )
+  }
+  
   onSubmit(form: NgForm) {
     if (this.editMode) {
       this.userService.updateUser(this.userData).subscribe((res) => {
